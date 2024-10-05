@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{title}}</title>
+    <!-- Incluir Bootstrap desde un CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluir iconos de Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        .hero {
+            background-image: url('https://www.example.com/imagen_medica.jpg'); /* Puedes cambiar esta URL por una imagen relacionada con la medicina */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3rem;
+        }
+        .features .card {
+            border: none;
+            transition: transform 0.3s;
+        }
+        .features .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'core:home' %}">Sistema Médico</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+           <li class="nav-item active">
+                    <a class="nav-link" href={% url 'core:home' %}>Inicio <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={% url 'core:doctor_list' %}>Doctores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary text-white" href="#">Iniciar Sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Sección principal (Hero) -->
+<section class="features text-center">
+    <div class="container">
+        <h1>{{title1}}</h1>
+        <p class="lead">Tu salud es nuestra prioridad</p>
+        <a href="#" class="btn btn-primary btn-lg">Comenzar</a>
+    </div>
+</section>
+
+<!-- Sección de servicios destacados -->
+<section class="features py-5 text-center">
+    <div class="container">
+        <h2 class="mb-4">Nuestros Servicios</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-user-md fa-3x mb-3"></i>
+                        <h5 class="card-title">Consultas Médicas</h5>
+                        <p class="card-text">Accede a consultas con nuestros profesionales de manera rápida y segura.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-pills fa-3x mb-3"></i>
+                        <h5 class="card-title">Recetas Electrónicas</h5>
+                        <p class="card-text">Recibe tus recetas médicas de manera electrónica, sin complicaciones.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-heartbeat fa-3x mb-3"></i>
+                        <h5 class="card-title">Seguimiento de Pacientes</h5>
+                        <p class="card-text">Monitorea tu salud desde casa con nuestras herramientas de seguimiento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de contacto -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2>Contáctanos</h2>
+        <p class="mb-4">Si tienes alguna consulta, no dudes en comunicarte con nosotros.</p>
+        <a href="#" class="btn btn-outline-primary btn-lg">Contáctanos</a>
+    </div>
+</section>
+
+<!-- Pie de página -->
+<footer class="py-4 bg-dark text-white text-center">
+    <p>&copy; 2024 Sistema Médico. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Scripts de Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

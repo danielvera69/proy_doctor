@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Doctors List</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+   
+    <style>
+        .hero {
+            background-image: url('https://www.example.com/imagen_medica.jpg'); /* Puedes cambiar esta URL por una imagen relacionada con la medicina */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3rem;
+        }
+        .features .card {
+            border: none;
+            transition: transform 0.3s;
+        }
+        .features .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+        <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'core:home' %}">Sistema Médico</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href={% url 'core:home' %}>Inicio <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'core:doctor_list' %}>Doctores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary text-white" href="#">Iniciar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">{{title1}}</h1>
+        <a class="btn btn-primary mb-sm-2" href="/doctor_create/">Nuevo registro</a>
+        <!-- Table with doctors data -->
+        <table class="table table-striped table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Profession</th>
+                    <th scope="col">Clinic</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Birth Date</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Acciones</th> <!-- Nueva columna de Acciones -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctores %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ doctor.first_name }}</td>
+                    <td>{{ doctor.last_name }}</td>
+                    <td>
+                        {% for profession in doctor.profession.all %}
+                            {{ profession.description }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ doctor.clinic.name }}</td>
+                    <td>{{ doctor.get_sex_display }}</td>
+                    <td>{{ doctor.birth_date }}</td>
+                    <td>{{ doctor.address }}</td>
+                    <td>
+                        <!-- Botones de acciones -->
+                        <a href={% url 'core:doctor_update' doctor.id %} class="btn btn-warning btn-sm">Editar</a>
+                        <a href={% url 'core:doctor_delete' doctor.id %} class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" class="text-center">No doctors available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
